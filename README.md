@@ -28,6 +28,17 @@ It will not:
 ## Setup
 * Install python requirements by running `pip install -r requirements.txt`.
 * Install sshpass by running `sudo apt-get install sshpass`.
+* Flash SD-card with [Raspbian Stretch Lite](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md).
+* Add empty file named `ssh` in boot-partition of the flashed SD-card.
+* Optional: To enable wifi place a file called `wpa_supplicant.conf` in the boot-partition of the flashed SD-card with the following content:
+```
+network={
+        ssid="your ssid"
+        psk="your password"
+}
+```
+* Run playbook.
+
 
 ## Inventory
 
@@ -116,18 +127,6 @@ unattended_upgrades_email_address: root
 # Internal variable used when running tests - should not be used.
 ansible_raspbian_testing: false
 ```
-
-## Setup
-* Flash SD-card with [Raspbian Stretch Lite](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md).
-* Add empty file named `ssh` in boot-partition of the flashed SD-card.
-* Optional: To enable wifi place a file called `wpa_supplicant.conf` in the boot-partition of the flashed SD-card with the following content:
-```
-network={
-        ssid="your ssid"
-        psk="your password"
-}
-```
-* Run playbook.
 
 ## Example Playbook
 ```yaml
