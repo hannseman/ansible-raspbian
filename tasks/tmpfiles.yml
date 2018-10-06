@@ -1,0 +1,8 @@
+---
+
+- name: ensure that lastlog-file exists
+  lineinfile:
+    path: /usr/lib/tmpfiles.d/var.conf
+    line: 'f /var/log/lastlog 0664 root utmp -'
+    insertafter: EOF
+    state: present

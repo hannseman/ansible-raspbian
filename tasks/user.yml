@@ -1,0 +1,9 @@
+---
+
+- name: setup ssh user {{ ansible_ssh_user }}
+  user:
+    name: "{{ ansible_ssh_user }}"
+    password: "{{ system_ssh_user_password|password_hash('sha512', system_ssh_user_salt) }}"
+    update_password: always
+    state: present
+  when: system_ssh_user_password is defined and system_ssh_user_salt is defined

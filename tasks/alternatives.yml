@@ -1,0 +1,7 @@
+---
+
+- name: set default editor to {{ system_default_editor_path }}
+  alternatives:
+    name: editor
+    path: "{{ system_default_editor_path }}"
+  when: system_default_editor_path is defined

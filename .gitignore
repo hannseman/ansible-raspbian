@@ -1,0 +1,4 @@
+*.retry
+.vault_pass
+.idea/
+hosts

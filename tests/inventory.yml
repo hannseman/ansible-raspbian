@@ -1,0 +1,12 @@
+---
+all:
+  hosts:
+    localhost:
+      ansible_host: localhost
+      ansible_connection: ssh
+      ansible_port: 2222
+      ansible_ssh_user: pi
+      ansible_ssh_pass: raspberry
+      ansible_ssh_private_key_file: tests/files/id_ed25519
+      ansible_ssh_common_args: -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
+

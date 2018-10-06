@@ -1,0 +1,70 @@
+---
+
+- name: set logwatch range range for weekly interval
+  set_fact:
+    logwatch_range: "between -7 days and -1 days"
+  when: logwatch_interval == "weekly"
+
+- name: set logwatch range for daily interval
+  set_fact:
+    logwatch_range: "yesterday"
+  when: logwatch_interval == "daily"
+
+- name: install logwatch
+  apt:
+    name: "logwatch"
+    state: present
+
+- name: remove weekly logwatch cronjob
+  file:
+    path: /etc/cron.weekly/00logwatch
+    state: absent
+  when: logwatch_interval == "daily"
+
+- name: remove daily logwatch cronjob
+  file:
+    path: /etc/cron.daily/00logwatch
+    state: absent
+  when: logwatch_interval == "weekly"
+
+- name: upload daily logwatch cronjob
+  copy:
+    src: logwatch/00logwatch
+    dest: /etc/cron.daily/00logwatch
+    mode: "a+x"
+  when: logwatch_interval == "daily"
+
+- name: upload weekly logwatch cronjob
+  copy:
+    src: logwatch/00logwatch
+    dest: /etc/cron.weekly/00logwatch
+    mode: "a+x"
+  when: logwatch_interval == "weekly"
+
+- name: set logwatch MailTo {{ logwatch_mailto }}
+  lineinfile:
+    dest: /usr/share/logwatch/default.conf/logwatch.conf
+    regexp: "^MailTo"
+    line: "MailTo = {{ logwatch_mailto }}"
+  when: logwatch_mailto is defined
+
+- name: set logwatch Range {{ logwatch_range }}
+  lineinfile:
+    dest: /usr/share/logwatch/default.conf/logwatch.conf
+    regexp: "^Range"
+    line: "Range = {{ logwatch_range }}"
+  when: logwatch_range is defined
+
+- name: set logwatch Detail {{ logwatch_detail }}
+  lineinfile:
+    dest: /usr/share/logwatch/default.conf/logwatch.conf
+    regexp: "^Detail"
+    line: "Detail = {{ logwatch_detail }}"
+  when: logwatch_detail is defined
+
+- name: set logwatch TmpDir {{ logwatch_tmp_dir }}
+  lineinfile:
+    dest: /usr/share/logwatch/default.conf/logwatch.conf
+    regexp: "^TmpDir"
+    line: "TmpDir = {{ logwatch_tmp_dir }}"
+  when: logwatch_tmp_dir is defined

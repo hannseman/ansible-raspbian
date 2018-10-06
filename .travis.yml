@@ -1,0 +1,18 @@
+---
+
+language: python
+
+services:
+  - docker
+
+before_install:
+  - pip install -r requirements.txt
+  - pip install yamllint
+  - sudo apt-get -y install sshpass
+
+install:
+  - make docker
+
+script:
+  - make lint
+  - make test

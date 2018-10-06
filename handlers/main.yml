@@ -1,0 +1,43 @@
+---
+
+- name: update-locale
+  command: "update-locale LANG={{ system_locale }}"
+
+- name: restart postfix
+  service:
+    name: postfix
+    state: restarted
+
+- name: postmap sasl_passwd
+  command: postmap hash:/etc/postfix/sasl_passwd
+
+- name: postfix new aliases
+  command: newaliases
+
+- name: restart sshd
+  service:
+    name: ssh
+    state: restarted
+
+- name: reload ufw
+  ufw:
+    state: reloaded
+  when: not ansible_raspbian_testing
+
+- name: reboot host
+  shell: sleep 2 && /sbin/shutdown -r now "Ansible reboot"
+  async: 1
+  poll: 0
+  when: not ansible_raspbian_testing
+
+- name: wait for host to be ready
+  become: false
+  connection: local
+  local_action: wait_for
+  args:
+    host: "{{ ansible_default_ipv4.address }}"
+    port: "{{ ansible_port|default(22) }}"
+    state: started
+    delay: 60
+    timeout: 180
+  when: not ansible_raspbian_testing

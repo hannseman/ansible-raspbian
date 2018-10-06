@@ -1,0 +1,20 @@
+---
+
+galaxy_info:
+  author: Hannes Ljungberg
+  description: Setup a secure basic Raspbian environment with sensible defaults.
+  license: MIT
+  min_ansible_version: 2.6.0
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+  galaxy_tags:
+    - raspberry
+    - pi
+    - rpi
+    - raspbian
+    - system
+    - debian
+
+dependencies: []

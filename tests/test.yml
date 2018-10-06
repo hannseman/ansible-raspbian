@@ -1,0 +1,31 @@
+---
+
+
+- hosts: localhost
+  become: true
+  gather_facts: false
+  pre_tasks:
+  - name: wait for connection
+    wait_for_connection:
+      timeout: 300
+  - name: update apt cache
+    apt:
+      cache_valid_time: 600
+  roles:
+    - ../../
+  vars:
+    ansible_raspbian_testing: true
+    system_packages:
+      - vim
+    system_ssh_user_salt: lJC5x7N90N
+    system_default_editor_path: "/usr/bin/vim.basic"
+    postfix_sasl_user: root@example.com
+    postfix_sasl_password: hunter2
+    ssh_public_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXTGInmtpoG9rYmT/3DpL+0o/sH2shys+NwJLo8NnCj
+    ssh_banner: UNAUTHORIZED ACCESS TO THIS DEVICE IS PROHIBITED
+    ufw_allow_igmp: true
+    rpi_boot_config:
+      enable_uart: 1
+    rpi_cmdline_config:
+      serial: 1

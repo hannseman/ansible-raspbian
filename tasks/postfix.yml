@@ -1,0 +1,62 @@
+---
+
+- name: install postfix
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - postfix
+    - mailutils
+
+- name: configure postfix mailname
+  template:
+    src: postfix/mailname.j2
+    dest: /etc/mailname
+    owner: root
+    group: root
+    mode: 0644
+  when: postfix_mailname is defined
+  notify:
+    - restart postfix
+
+- name: set root email alias {{ postfix_sasl_user }}
+  lineinfile:
+    dest: /etc/aliases
+    regexp: "^root"
+    line: "root: {{ postfix_sasl_user }}"
+    state: present
+  when: postfix_sasl_user is defined
+  notify:
+    - postfix new aliases
+
+- name: configure postfix sasl username/password
+  template:
+    src: postfix/sasl_passwd.j2
+    dest: /etc/postfix/sasl_passwd
+    owner: root
+    group: root
+    mode: 0600
+  when:
+    - postfix_sasl_user is defined
+    - postfix_sasl_password is defined
+    - postfix_relayhost is defined
+    - postfix_relayhost_port is defined
+  notify:
+    - postmap sasl_passwd
+    - restart postfix
+
+- name: update postfix configuration file
+  template:
+    src: postfix/main.cf.j2
+    dest: /etc/postfix/main.cf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - restart postfix
+
+- name: start and enable postfix service
+  service:
+    name: postfix
+    enabled: true
+    state: started

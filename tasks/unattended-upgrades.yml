@@ -1,0 +1,22 @@
+---
+
+- name: install unattended-upgrades
+  apt:
+    name: "unattended-upgrades"
+    state: present
+
+- name: create apt auto-upgrades configuration
+  template:
+    src: unattended-upgrades/20auto-upgrades.j2
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    owner: root
+    group: root
+    mode: 0644
+
+- name: create apt unattended-upgrades configuration
+  template:
+    src: unattended-upgrades/50unattended-upgrades.j2
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    owner: root
+    group: root
+    mode: 0644
