@@ -16,3 +16,9 @@ docker:
 
 test: docker
 	@ansible-playbook -vvv -i $(TEST_INVENTORY_FILE) $(TEST_PLAYBOOK)
+
+test-idempotence: docker
+	@ansible-playbook -vvv -i $(TEST_INVENTORY_FILE) $(TEST_PLAYBOOK) | \
+	grep -q 'changed=0.*failed=0' \
+    && (echo 'Idempotence test: pass' && exit 0) \
+    || (echo 'Idempotence test: fail' && exit 1) \
