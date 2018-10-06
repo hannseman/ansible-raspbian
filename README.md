@@ -2,7 +2,7 @@
 
 This role will setup a secure basic Raspbian environment with sensible defaults.
 
-It will:
+### It will:
 
  * Install specified system packages.
  * Configure hostname.
@@ -19,7 +19,7 @@ It will:
  * Install Fail2ban.
  * Configure Logwatch to send weekly reports.
 
-It will not:
+### It will not:
 
  * Update system packages.
  * Run `apt-get update`. Please do this in a pre_task. See [Example Playbook](#example-playbook).
