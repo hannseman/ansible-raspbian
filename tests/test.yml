@@ -2,7 +2,7 @@
 
 - hosts: localhost
   become: true
-  gather_facts: false
+  gather_facts: true
   pre_tasks:
   - name: wait for connection
     wait_for_connection:
