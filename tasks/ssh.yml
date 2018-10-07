@@ -73,6 +73,6 @@
   copy:
     content: "{{ ssh_banner }}"
     dest: /etc/issue.net
-  when: ssh_banner
+  when: ssh_banner != None
   notify:
     - restart sshd
