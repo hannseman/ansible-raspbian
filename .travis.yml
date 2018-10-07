@@ -16,3 +16,4 @@ install:
 script:
   - make lint
   - make test
+  - make test-idempotence
