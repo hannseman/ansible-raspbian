@@ -133,7 +133,7 @@ ansible_raspbian_testing: false
 
 ## Example Playbook
 ```yaml
-- hosts: localhost
+- hosts: servers
   become: true
   pre_tasks:
     - name: update apt cache
