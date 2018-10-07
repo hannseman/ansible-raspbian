@@ -3,8 +3,8 @@
 - name: install postfix
   apt:
     name:
-    - postfix
-    - mailutils
+      - postfix
+      - mailutils
     state: present
 
 - name: configure postfix mailname
