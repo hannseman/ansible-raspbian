@@ -26,4 +26,4 @@
 
 - name: reboot host
   reboot:
-    reboot_timeout: 600
+  when: not ansible_raspbian_testing
