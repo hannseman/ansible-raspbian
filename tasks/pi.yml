@@ -15,7 +15,6 @@
     rpi_config_get_result.results|map(attribute="stdout")|sort != rpi_cmdline_config.values()|list|map("string")|sort
   notify:
     - reboot host
-    - wait for host to be ready
 
 - name: update /boot/config.txt
   lineinfile:
@@ -26,4 +25,3 @@
   when: rpi_boot_config|length > 0
   notify:
     - reboot host
-    - wait for host to be ready

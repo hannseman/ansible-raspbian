@@ -2,11 +2,10 @@
 
 - name: install postfix
   apt:
-    name: "{{ item }}"
-    state: present
-  with_items:
+    name:
     - postfix
     - mailutils
+    state: present
 
 - name: configure postfix mailname
   template:
