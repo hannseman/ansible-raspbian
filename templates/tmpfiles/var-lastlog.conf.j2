@@ -1,0 +1,4 @@
+# {{ ansible_managed }}
+
+# Make sure that lastlog file exists on tmpfs mounts
+f /var/log/lastlog 0664 root utmp -
