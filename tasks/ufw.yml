@@ -25,7 +25,7 @@
       -A ufw-before-input -p igmp -d 224.0.0.0/4 -j ACCEPT
       -A ufw-before-output -p igmp -d 224.0.0.0/4 -j ACCEPT
     state: present
-  when: ufw_allow_igmp
+  when: ufw_allow_igmp|bool
   notify:
     - reload ufw
 
