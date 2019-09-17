@@ -43,5 +43,3 @@ ufw_rules:
 ufw_allow_igmp: false
 
 unattended_upgrades_email_address: root
-
-ansible_raspbian_testing: false
