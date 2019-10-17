@@ -1,0 +1,11 @@
+---
+
+- name: create bash aliases
+  template:
+    src: bash/00-aliases.sh.j2
+    dest: /etc/profile.d/00-aliases.sh
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - raspbian_bash_aliases is defined

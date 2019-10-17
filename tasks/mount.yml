@@ -11,3 +11,17 @@
     state: mounted
   with_items: "{{ system_tmpfs_mounts }}"
   when: system_tmpfs_mounts|length > 0
+
+- name: check if swap enabled
+  shell: swapon -s | wc -l
+  register: swap_enabled
+
+- name: disable swap
+  shell: "{{ item }}"
+  with_items:
+    - dphys-swapfile swapoff
+    - dphys-swapfile uninstall
+    - update-rc.d dphys-swapfile disable
+  when: swap_enabled.stdout != "1"
+  notify:
+    - reboot host

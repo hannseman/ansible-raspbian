@@ -1,0 +1,12 @@
+---
+- name: configure static IP
+  copy:
+    src={{ item.src }}
+    dest={{ item.dest }}
+    owner={{ item.owner }}
+    group={{ item.group }}
+    mode={{ item.mode }}
+  with_items:
+    - { src: "interfaces/eth0", dest: "/etc/network/interfaces.d/eth0", owner: "root", group: "root", mode: "0644" }
+  notify:
+    - reboot host
