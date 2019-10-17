@@ -4,6 +4,10 @@
   tags:
     - apt
 
+- import_tasks: blacklist.yml
+  tags:
+    - blacklist
+
 - import_tasks: hostname.yml
   when: system_hostname is defined
   tags:
@@ -49,10 +53,14 @@
   tags:
     - unattended-upgrades
 
-- import_tasks: fail2ban.yml
-  tags:
-    - fail2ban
-
 - import_tasks: logwatch.yml
   tags:
     - logwatch
+
+- import_tasks: bash.yml
+  tags:
+    - bash
+
+- import_tasks: interfaces.yml
+  tags:
+    - interfaces

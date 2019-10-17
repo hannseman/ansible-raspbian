@@ -43,3 +43,12 @@ ufw_rules:
 ufw_allow_igmp: false
 
 unattended_upgrades_email_address: root
+
+raspbian_blacklist: |
+  # Disable WIFI
+  blacklist brcmfmac
+  blacklist brcmutil
+
+  # Disable BlueTooth
+  blacklist btbcm
+  blacklist hci_uart

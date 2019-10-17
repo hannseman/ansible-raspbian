@@ -1,0 +1,13 @@
+---
+
+- name: disable pi modules
+  template:
+    src: blacklist/raspi-blacklist.conf.j2
+    dest: /etc/modprobe.d/raspi-blacklist.conf
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - raspbian_blacklist is defined
+  notify:
+    - reboot host
