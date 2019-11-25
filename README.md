@@ -127,8 +127,6 @@ ufw_allow_igmp: false
 # Recipient of unattended-upgrades report
 unattended_upgrades_email_address: root
 
-# Internal variable used when running tests - should not be used.
-ansible_raspbian_testing: false
 ```
 
 ## Example Playbook

@@ -4,6 +4,10 @@
   tags:
     - apt
 
+- import_tasks: blacklist.yml
+  tags:
+    - blacklist
+
 - import_tasks: hostname.yml
   when: system_hostname is defined
   tags:
@@ -56,3 +60,11 @@
 - import_tasks: logwatch.yml
   tags:
     - logwatch
+
+- import_tasks: bash.yml
+  tags:
+    - bash
+
+- import_tasks: interfaces.yml
+  tags:
+    - interfaces

@@ -1,0 +1,19 @@
+---
+
+- name: Converge
+  hosts: all
+  roles:
+    - role: ansible-raspbian
+  become: true
+  vars:
+    system_packages:
+      - apt-transport-https
+      - vim
+    system_default_editor_path: "/usr/bin/vim.basic"
+    system_ssh_user_password: hunter2
+    system_ssh_user_salt: pepper
+    postfix_sasl_user: root@example.com
+    postfix_sasl_password: hunter2
+
+    ssh_public_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJXTGInmtpoG9rYmT/3DpL+0o/sH2shys+NwJLo8NnCj

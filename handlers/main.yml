@@ -22,8 +22,6 @@
 - name: reload ufw
   ufw:
     state: reloaded
-  when: not ansible_raspbian_testing
 
 - name: reboot host
   reboot:
-  when: not ansible_raspbian_testing

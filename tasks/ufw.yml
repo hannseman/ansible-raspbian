@@ -44,4 +44,3 @@
 - name: enable ufw
   ufw:
     state: enabled
-  when: not ansible_raspbian_testing

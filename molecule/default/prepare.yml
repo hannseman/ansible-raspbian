@@ -1,0 +1,11 @@
+---
+
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  become: true
+  tasks:
+      - name: install raspbian depandancie
+        apt: name={{item}} state=installed
+        with_items:
+          - dphys-swapfile
