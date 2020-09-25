@@ -1,6 +1,6 @@
 # ansible-raspbian
 
-[![Ansible Role](https://img.shields.io/ansible/role/30388.svg)](https://galaxy.ansible.com/hannseman/raspbian) 
+[![Ansible Role](https://img.shields.io/ansible/role/30388.svg)](https://galaxy.ansible.com/hannseman/raspbian)
 [![Travis (.org)](https://img.shields.io/travis/hannseman/ansible-raspbian.svg)](https://travis-ci.com/hannseman/ansible-raspbian)
 
 This role will setup a secure basic Raspbian environment with sensible defaults.
@@ -10,7 +10,7 @@ This role will setup a secure basic Raspbian environment with sensible defaults.
  * Install specified system packages.
  * Configure hostname.
  * Configure locale.
- * Mount tmpfs on write-intensive directories to increase the lifespan of SD-card. 
+ * Mount tmpfs on write-intensive directories to increase the lifespan of SD-card.
  * Change the password on default user.
  * Set the default editor.
  * Setup a secure SSH configuration.
@@ -26,7 +26,7 @@ This role will setup a secure basic Raspbian environment with sensible defaults.
 
  * Update system packages.
  * Run `apt-get update`. Please do this in a pre_task. See [Example Playbook](#example-playbook).
- * Install security patches but unattended-upgrades should take care of that. 
+ * Install security patches but unattended-upgrades should take care of that.
 
 ## Setup
 * Install python requirements by running `pip install -r requirements.txt`.
@@ -47,7 +47,7 @@ network={
 
 [sshpass](https://linux.die.net/man/1/sshpass) is required to make the first Ansible run
 with the default password `raspberry`. Password authentication over SSH will then be disabled in
-preference of public key authentication with keys specified in `ssh_public_keys`. 
+preference of public key authentication with keys specified in `ssh_public_keys`.
 Your inventory should contain the following:
 
 ```ini
@@ -112,8 +112,8 @@ rpi_boot_config: {}
 rpi_cmdline_config: {}
 
 ssh_sshd_config: "/etc/ssh/sshd_config"
-# Required field, list of ssh public keys to update ~/.authorized_keys. 
-# Note: One of these keys needs to be one that Ansible is using.   
+# Required field, list of ssh public keys to update ~/.authorized_keys.
+# Note: One of these keys needs to be one that Ansible is using.
 ssh_public_keys: []
 # String to present when connecting to host over ssh
 ssh_banner:
@@ -126,6 +126,8 @@ ufw_allow_igmp: false
 
 # Recipient of unattended-upgrades report
 unattended_upgrades_email_address: root
+# Should we reboot when /var/run/reboot-required is found?
+unattended_upgrades_auto_reboot: false
 
 # Internal variable used when running tests - should not be used.
 ansible_raspbian_testing: false
