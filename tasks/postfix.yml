@@ -5,6 +5,7 @@
     name:
       - postfix
       - mailutils
+      - libsasl2-modules
     state: present
 
 - name: configure postfix mailname
