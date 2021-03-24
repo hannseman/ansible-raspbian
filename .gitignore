@@ -2,3 +2,5 @@
 .vault_pass
 .idea/
 hosts
+.cache
+.direnv/

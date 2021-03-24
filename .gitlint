@@ -1,0 +1,11 @@
+[general]
+ignore=body-is-missing
+
+[title-max-length]
+line-length=50
+
+[title-min-length]
+min-length=5
+
+[body-min-length]
+min-length=1

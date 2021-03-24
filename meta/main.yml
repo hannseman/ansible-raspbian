@@ -2,7 +2,7 @@
 
 galaxy_info:
   role_name: raspbian
-  author: Hannes Ljungberg
+  author: jottr
   description: Setup a secure basic Raspbian environment with sensible defaults.
   license: MIT
   min_ansible_version: 2.7.0
