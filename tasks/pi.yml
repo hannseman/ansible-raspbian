@@ -12,7 +12,7 @@
   with_dict: "{{ rpi_cmdline_config }}"
   when: >
     rpi_cmdline_config is defined and
-    rpi_config_get_result.results|map(attribute="stdout")|sort != rpi_cmdline_config.values()|list|map("string")|sort
+    rpi_config_get_result.results | map(attribute="stdout") | sort != rpi_cmdline_config.values() | list | map("string") | sort
   notify:
     - reboot host
 
